@@ -1,0 +1,3 @@
+add_executable(hw_tic_tac_toe_tests "tic_tac_toe_tests.cpp")
+target_link_libraries(hw_tic_tac_toe_tests hw_tic_tac_toe_library)
+add_test(NAME hw_tic_tac_toe_tests COMMAND hw_tic_tac_toe_tests -s)

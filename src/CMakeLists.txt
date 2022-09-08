@@ -1,0 +1,2 @@
+ADD_SUBDIRECTORY(examples)
+ADD_SUBDIRECTORY(homework)

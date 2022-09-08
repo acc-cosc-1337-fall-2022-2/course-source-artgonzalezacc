@@ -1,0 +1,1 @@
+//demonstrate class copy

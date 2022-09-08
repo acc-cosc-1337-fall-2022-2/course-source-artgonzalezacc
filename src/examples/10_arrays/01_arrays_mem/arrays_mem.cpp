@@ -1,0 +1,1 @@
+//write code for for stack_array and display each element to screen
