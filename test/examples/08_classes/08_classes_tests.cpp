@@ -10,7 +10,7 @@ TEST_CASE("Test bank account get balance with no constructor param")
 {
 	//assuming bankacountdb existed and we retrieved balance from there
 
-	BankAccount account;//create an instance/variable of the BankAccount class
+	//BankAccount account;//create an instance/variable of the BankAccount class
 
 	//REQUIRE(account.get_balance() == 500);
 }
@@ -22,6 +22,7 @@ TEST_CASE("Test bank account get balance with constructor param")
 	BankAccount account(100);//create an instance/variable of the BankAccount class
 
 	REQUIRE(account.get_balance() == 100);
+	REQUIRE(account.get_bank_balance() == 100000);
 }
 
 TEST_CASE("Test bank account deposit function")
@@ -31,6 +32,7 @@ TEST_CASE("Test bank account deposit function")
 
 	account.deposit(50);
 	REQUIRE(account.get_balance() == 150);
+	REQUIRE(account.get_bank_balance() == 100050);
 }
 
 TEST_CASE("Test bank account withdraw function")
@@ -40,6 +42,7 @@ TEST_CASE("Test bank account withdraw function")
 
 	account.withdraw(50);
 	REQUIRE(account.get_balance() == 50);
+	REQUIRE(account.get_bank_balance() == 100000);
 }
 
 TEST_CASE("Test bank account deposit and withdraw functions")
@@ -52,6 +55,7 @@ TEST_CASE("Test bank account deposit and withdraw functions")
 
 	account.withdraw(50);
 	REQUIRE(account.get_balance() == 100);
+	REQUIRE(account.get_bank_balance() == 100000);
 }
 
 TEST_CASE("Test bank account deposit negative amount")
@@ -61,6 +65,7 @@ TEST_CASE("Test bank account deposit negative amount")
 
 	account.deposit(-50);
 	REQUIRE(account.get_balance() == 100);
+	REQUIRE(account.get_bank_balance() == 100000);
 }
 
 TEST_CASE("Test bank account withdraw negative amount")
@@ -70,6 +75,7 @@ TEST_CASE("Test bank account withdraw negative amount")
 
 	account.withdraw(-50);
 	REQUIRE(account.get_balance() == 100);
+	REQUIRE(account.get_bank_balance() == 100000);
 }
 
 TEST_CASE("Test bank account withdraw more than balance")
@@ -79,4 +85,5 @@ TEST_CASE("Test bank account withdraw more than balance")
 
 	account.withdraw(101);
 	REQUIRE(account.get_balance() == 100);
+	REQUIRE(account.get_bank_balance() == 100000);
 }
