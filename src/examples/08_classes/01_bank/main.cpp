@@ -1,4 +1,6 @@
 #include "bank_account.h"
+#include "checking_account.h"
+#include "savings_account.h"
 #include<time.h>
 
 using std::cout; 
@@ -7,8 +9,14 @@ using std::cin;
 int main()
 {
 	//truly generate a random every time the app runs
-	srand(time(NULL));
-	BankAccount account3(100);
+  	srand(time(NULL));
+	CheckingAccount account5;
+	cout<<account5;
+
+	SavingsAccount account6;
+	cout<<account6;
+
+/*	BankAccount account3(100);
 	cout<<account3;
 
 	BankAccount account(500);
@@ -25,7 +33,7 @@ int main()
 	BankAccount account1 = get_account();
 	cout<<account1.get_balance()<<"\n";
 
-	show_balance(account1);
+	show_balance(account1);*/
 
 	return 0;
 }
