@@ -21,6 +21,11 @@ void BankAccount::withdraw(int amount)
     }
 }
 
+int BankAccount::get_balance() const
+{
+    return balance;
+}
+
 //private class functions/methods
 void BankAccount::set_balance_from_db()
 {
@@ -60,10 +65,10 @@ void display_balance(const BankAccount& account)
 {
     cout<<"display_function: "<<account.get_balance()<<"\n";
 }
-
-BankAccount get_account()
+/*
+CheckingAccount get_account()
 {
-    BankAccount account;
+    CheckingAccount account;
     return account;    
-}
+}*/
 
