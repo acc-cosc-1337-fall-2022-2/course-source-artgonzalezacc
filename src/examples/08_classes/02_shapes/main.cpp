@@ -15,19 +15,19 @@ using std::vector; using std::cout;
 
 int main() 
 {
-	Shape* shape = new Circle();
-	Shape* shape1 = new Line();	
+	const auto SIZE = 3;
 
-	vector<Shape*> shapes{shape, shape1};
+	Circle circles[SIZE];
 
-	for(auto shape: shapes)
-	{
-		shape->draw();
-	}
+	circles[0].draw();
+	circles[1].draw();
+	circles[2].draw();
 
-	delete shapes[0];
-	delete shapes[1];
+	Line lines[SIZE];
+	lines[0].draw();
 
-
+	Shape* shape = circles;
+	shape->draw();
+	
 	return 0;
 }
