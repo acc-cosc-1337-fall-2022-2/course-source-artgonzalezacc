@@ -16,18 +16,25 @@ using std::vector; using std::cout;
 int main() 
 {
 	const auto SIZE = 3;
+	int something = 10;
 
-	Circle circles[SIZE];
+	Shape* shape = new Circle(123, &something);
+	
+	shape->draw();
+	delete shape;
 
-	circles[0].draw();
-	circles[1].draw();
-	circles[2].draw();
-
-	Line lines[SIZE];
-	lines[0].draw();
-
-	Shape* shape = circles;
+	shape = new Line(321, &something);
+	
 	shape->draw();
 	
+	delete shape;
+
+	//class shallow copy
+	
+	Circle circle1(111, &something);
+	Circle circle2 = circle1;
+	circle1.draw();
+	circle2.draw();
+
 	return 0;
 }

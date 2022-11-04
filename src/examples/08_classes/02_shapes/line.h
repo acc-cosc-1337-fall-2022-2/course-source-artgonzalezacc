@@ -7,7 +7,8 @@
 class Line: public Shape
 {
 public:
-    void draw(){std::cout<<"Line\n";}    
+    Line(int color, int* something) : Shape(color, something){/**/}
+    void draw(){std::cout<<"Line "<<color<<" "<<*something<<"\n";}    
 };
 
 #endif
