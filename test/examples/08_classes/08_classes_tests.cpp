@@ -29,7 +29,7 @@ TEST_CASE("Test bank account get balance with constructor param")
 
 TEST_CASE("Test bank account deposit function")
 {
-	BankAccount account(100);
+	CheckingAccount account(100);
 	REQUIRE(account.get_balance() == 100);
 
 	account.deposit(50);
@@ -39,7 +39,7 @@ TEST_CASE("Test bank account deposit function")
 
 TEST_CASE("Test bank account withdraw function")
 {
-	BankAccount account(100);
+	CheckingAccount account(100);
 	REQUIRE(account.get_balance() == 100);
 
 	account.withdraw(50);
@@ -49,7 +49,7 @@ TEST_CASE("Test bank account withdraw function")
 
 TEST_CASE("Test bank account deposit and withdraw functions")
 {
-	BankAccount account(100);
+	CheckingAccount account(100);
 	REQUIRE(account.get_balance() == 100);
 
 	account.deposit(50);
@@ -62,7 +62,7 @@ TEST_CASE("Test bank account deposit and withdraw functions")
 
 TEST_CASE("Test bank account deposit negative amount")
 {
-	BankAccount account(100);
+	CheckingAccount account(100);
 	REQUIRE(account.get_balance() == 100);
 
 	account.deposit(-50);
@@ -72,7 +72,7 @@ TEST_CASE("Test bank account deposit negative amount")
 
 TEST_CASE("Test bank account withdraw negative amount")
 {
-	BankAccount account(100);
+	CheckingAccount account(100);
 	REQUIRE(account.get_balance() == 100);
 
 	account.withdraw(-50);
@@ -82,7 +82,7 @@ TEST_CASE("Test bank account withdraw negative amount")
 
 TEST_CASE("Test bank account withdraw more than balance")
 {
-	BankAccount account(100);
+	CheckingAccount account(100);
 	REQUIRE(account.get_balance() == 100);
 
 	account.withdraw(101);
