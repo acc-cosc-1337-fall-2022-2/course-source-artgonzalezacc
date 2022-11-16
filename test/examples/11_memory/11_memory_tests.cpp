@@ -24,7 +24,14 @@ TEST_CASE("Test vector get size")
 TEST_CASE("Test create vector from existing vector class-no copy constructor")
 {
 	Vector v(3);
+	v[0] = 5;
+	v[1] = 10;
+	v[2] = 3;
 	Vector v1 = v;
+	
+	REQUIRE(v[0] == v1[0]);
+	v[0] = 8;
 
+	REQUIRE(v[0] != v1[0]);
 
 }
