@@ -19,7 +19,7 @@ TEST_CASE("Test vector get size")
 	Vector v(3);
 
 	REQUIRE(v.Size() == 3);
-}*/
+}
 
 TEST_CASE("Test create vector from existing vector class-no copy constructor")
 {
@@ -34,4 +34,18 @@ TEST_CASE("Test create vector from existing vector class-no copy constructor")
 
 	REQUIRE(v[0] != v1[0]);
 
+}
+
+TEST_CASE("Test create 2 vectors v and v1 overwrite v1 with v")
+{
+	Vector v(3);
+	Vector v1(3);
+	v1 = v;
+}
+*/
+
+TEST_CASE("Test overwrite vector with a vector return function")
+{
+	Vector v1(3);
+	Vector v2 = std::move(v1);
 }
