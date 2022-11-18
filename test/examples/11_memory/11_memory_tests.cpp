@@ -42,10 +42,15 @@ TEST_CASE("Test create 2 vectors v and v1 overwrite v1 with v")
 	Vector v1(3);
 	v1 = v;
 }
-*/
 
 TEST_CASE("Test overwrite vector with a vector return function")
 {
 	Vector v1(3);
 	Vector v2 = std::move(v1);
+}
+*/
+TEST_CASE("Test overwrite v with a value return from get vector")
+{
+	Vector v(3);
+	v = get_vector();
 }

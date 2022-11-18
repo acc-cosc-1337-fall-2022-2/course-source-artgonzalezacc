@@ -7,6 +7,12 @@ Vector::Vector(int size)
 {
     cout<<"Create memory: "<<elements<<"\n";
     this->size = size;
+    this->capacity = size;
+
+    for(auto i=0; i < size; i++)
+    {
+        elements[i] = 0;
+    }
 }
 
 /*
@@ -66,6 +72,95 @@ Vector::Vector(Vector&& v)
     v.size = 0;
 }
 
+/*
+1-clear orginal dynamic memory from v 
+2-point elements to v.elements
+3-get size from v
+4- point v.elements to nullptr
+5-set v.size to 0
+6-return a reference to this vector
+*/
+Vector& Vector::operator=(Vector&& v)
+{
+    cout<<"Move assignment delete memory "<<elements<<"\n";
+    delete elements;
+
+    elements = v.elements;
+    cout<<"Move assignment steal memory "<<elements<<"\n";
+
+    size = v.size;
+    v.elements = nullptr;
+    v.size = 0;
+
+    return *this;
+}
+
+/*
+1-Make sure new allocation is greater than capacity
+2-create temp memory of size allocation
+3-copy values from old memory to temp array
+4-delete the old array
+5-set elements to temp memory array
+6-set capacity to new allocation size
+*/
+void Vector::Reserve(int new_size)
+{
+    if(new_size >= capacity)
+    {
+        return;
+    }
+
+    int* temp = new int[new_size];
+
+    for(auto i=0; i < size; i++)
+    {
+       temp[i]  = elements[i];
+    }
+
+    delete[] elements;
+
+    elements = temp;
+    capacity = new_size;
+}
+
+/*
+1-call reserve
+2-initialize elements beyond size
+3-set size to new size
+*/
+void Vector::Resize(int new_size)
+{
+    Reserve(new_size);
+
+    for(auto i=size; i < new_size; i++)
+    {
+        elements[i] = 0;
+    }
+
+    size = new_size;
+
+}
+
+/*
+1-if capacity is 0 call reserve with Reserve Default size
+2-else if size is space call Reserve w space * reserve default multiplier
+3-set value to current element at size(index)
+4-increment the size
+*/
+void Vector::Push_Back(int value)
+{
+    if(capacity == 0)
+    {
+        Reserve(RESERVE_DEFAULT_SIZE);
+    }
+    else if(capacity == size)
+    {
+        Reserve(capacity * RESERVE_DEFAULT_MULTIPLIER);
+    }
+
+    elements[size] = value;
+    size++;
+}
 
 Vector::~Vector()
 {
