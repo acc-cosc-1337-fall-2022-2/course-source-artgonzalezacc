@@ -1,9 +1,16 @@
 #include "my_vector.h"
 
 using std::cout;
+template<typename T>
+Vector<T>::Vector()
+: size{0}, capacity{0}, elements{nullptr}
+{
+//empty code block
+}
 //
-Vector::Vector(int size)
-: elements{new int[size]}
+template<typename T>
+Vector<T>::Vector(int size)
+: elements{new T[size]}
 {
     cout<<"Create memory: "<<elements<<"\n";
     this->size = size;
@@ -20,8 +27,9 @@ Vector::Vector(int size)
 2-Initialize memory for v1
 3-copy elements from v to v1
 */
-Vector::Vector(const Vector& v)
-: size{v.size}, elements{new int[v.size]}
+template<typename T>
+Vector<T>::Vector(const Vector<T>& v)
+: size{v.size}, elements{new T[v.size]}
 {
     cout<<"Copy constructor - create memory: "<<elements<<"\n";
     
@@ -39,9 +47,10 @@ Vector::Vector(const Vector& v)
 5-Set v1 size to v.size
 5-Return a reference to vector(this)
 */
-Vector& Vector::operator=(const Vector& v)
+template<typename T>
+Vector<T>& Vector<T>::operator=(const Vector<T>& v)
 {
-    int* temp = new int[v.size];
+    T* temp = new T[v.size];
 
     for(auto i=0; i < v.size; i++)
     {
@@ -64,7 +73,8 @@ Vector& Vector::operator=(const Vector& v)
 3-point v.elements to nothing(nullptr)
 4-set v size to 0
 */
-Vector::Vector(Vector&& v)
+template<typename T>
+Vector<T>::Vector(Vector<T>&& v)
 : size{v.size}, elements{v.elements}
 {
     cout<<"Move constructor-steal the memory "<<elements<<"\n";
@@ -80,7 +90,8 @@ Vector::Vector(Vector&& v)
 5-set v.size to 0
 6-return a reference to this vector
 */
-Vector& Vector::operator=(Vector&& v)
+template<typename T>
+Vector<T>& Vector<T>::operator=(Vector<T>&& v)
 {
     cout<<"Move assignment delete memory "<<elements<<"\n";
     delete elements;
@@ -103,20 +114,23 @@ Vector& Vector::operator=(Vector&& v)
 5-set elements to temp memory array
 6-set capacity to new allocation size
 */
-void Vector::Reserve(int new_size)
+template<typename T>
+void Vector<T>::Reserve(int new_size)
 {
-    if(new_size >= capacity)
+    if(new_size < capacity)
     {
         return;
     }
 
-    int* temp = new int[new_size];
+    T* temp = new T[new_size];
+    cout<<"Reserve create memory "<<temp<<"\n";
 
     for(auto i=0; i < size; i++)
     {
        temp[i]  = elements[i];
     }
 
+    cout<<"Delete memory "<<elements<<"\n";
     delete[] elements;
 
     elements = temp;
@@ -128,7 +142,8 @@ void Vector::Reserve(int new_size)
 2-initialize elements beyond size
 3-set size to new size
 */
-void Vector::Resize(int new_size)
+template<typename T>
+void Vector<T>::Resize(int new_size)
 {
     Reserve(new_size);
 
@@ -147,7 +162,8 @@ void Vector::Resize(int new_size)
 3-set value to current element at size(index)
 4-increment the size
 */
-void Vector::Push_Back(int value)
+template<typename T>
+void Vector<T>::Push_Back(T value)
 {
     if(capacity == 0)
     {
@@ -162,15 +178,21 @@ void Vector::Push_Back(int value)
     size++;
 }
 
-Vector::~Vector()
+template<typename T>
+Vector<T>::~Vector()
 {
     cout<<"Delete memory: "<<elements<<"\n";
     delete[] elements;
 }
 
+//tell C++ what data type this template supports
+template class Vector<int>;
+template class Vector<double>;
+template class Vector<char>;
+
 //free function; not part of the class
-Vector get_vector()
+Vector<int> get_vector()
 {
-    Vector v(3);
+    Vector<int> v(3);
     return v;
 }
