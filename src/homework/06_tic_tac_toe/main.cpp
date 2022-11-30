@@ -1,27 +1,46 @@
 #include "tic_tac_toe.h"
+#include "tic_tac_toe_manager.h"
+
+using std::cout; using std::cin;
 
 int main() 
 {
-	TicTacToe tic_tac_toe;
+	TicTacToeManager manager;
 	std::string player;
-
-	std::cout<<"Enter X or O: ";
-	std::cin>>player;
-
-	tic_tac_toe.start_game(player);
-
+	char choice;
+	
 	do
 	{
-		int position;
-		std::cout<<"Enter position from 1 to 9: ";
-		std::cin>>position;
-		tic_tac_toe.mark_board(position);
-		tic_tac_toe.display_board();
+		TicTacToe tic_tac_toe;
+		player = "Z";
 
-	} while (tic_tac_toe.game_over() == false);
+		while(!(player == "X" || player == "O")){
+			cout<<"Enter X or O: ";
+			cin>>player;
+		}
 
-	std::cout<<"Game over";
-	
+		tic_tac_toe.start_game(player);
+
+		do
+		{
+			cin>>tic_tac_toe;
+			cout<<tic_tac_toe;
+
+		} while (tic_tac_toe.game_over() == false);
+
+		manager.save_game(tic_tac_toe);
+
+		cout<<"Play again, enter Y";
+		cin>>choice;
+
+	}while(choice == 'y' || choice == 'Y');
+
+	cout<<manager;
+	int o, x, c;
+	manager.get_winner_total(o, x, c);
+	cout<<"X wins: "<<x<<"\n";
+	cout<<"O wins: "<<o<<"\n";
+	cout<<"C wins: "<<c<<"\n";
 
 	return 0;
 }
