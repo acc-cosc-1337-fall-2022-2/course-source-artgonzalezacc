@@ -1,4 +1,4 @@
-#include "arrays_char."
+#include "arrays_char.h"
 
 int main()
 {
